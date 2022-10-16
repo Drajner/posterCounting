@@ -10,14 +10,15 @@ import java.io.File;
 
 public class Main {
 
-    public static Scanner getFileScanner(String path){
+    public static Pair<Integer, ArrayList<Integer>> getFileInput(String path){
         File inputFile = new File(path);
+        System.out.println(inputFile.canRead());
         try(Scanner inputScanner = new Scanner(inputFile)){
-            return inputScanner;
+            return readInput(inputScanner);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return new Scanner(System.in);
+        return new Pair<Integer, ArrayList<Integer>>(0,new ArrayList<Integer>());
     }
 
     public static Pair<Integer, ArrayList<Integer>>  readInput(Scanner inputScanner){
@@ -46,6 +47,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println(coverAlgorithm(readInput(getFileScanner("C:\\Users\\Badi\\Desktop\\etap1\\pla\\in\\pla0.in"))));
+        System.out.println(coverAlgorithm(getFileInput("src\\rekrutacjaAtinea\\pla0.in")));
+        //System.out.println(coverAlgorithm(readInput(getFileScanner("src\\rekrutacjaAtinea\\pla0.in"))));
     }
 }
